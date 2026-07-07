@@ -86,5 +86,20 @@
             <summary>Command executed when right indicator is right-clicked</summary>
             <description>Shell command to execute when the right panel item is right-clicked.</description>
         </key>
+        <key name="left-tooltip" type="s">
+            <default>''</default>
+            <summary>Tooltip for the left widget</summary>
+            <description>Tooltip text to show when hovering over the left widget.</description>
+        </key>
+        <key name="center-tooltip" type="s">
+            <default>''</default>
+            <summary>Tooltip for the center widget</summary>
+            <description>Tooltip text to show when hovering over the center widget.</description>
+        </key>
+        <key name="right-tooltip" type="s">
+            <default>''</default>
+            <summary>Tooltip for the right widget</summary>
+            <description>Tooltip text to show when hovering over the right widget.</description>
+        </key>
     </schema>
 </schemalist>

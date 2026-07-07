@@ -25,6 +25,14 @@ export default class Executor extends Extension {
         this.executeQueue = [];
         this.locations = {};
 
+        if (!this.tooltip) {
+            this.tooltip = new St.Label({
+                style_class: 'executor-tooltip',
+                visible: false,
+            });
+            Main.uiGroup.add_child(this.tooltip);
+        }
+
         for (let position = 0; position < 3; position++) {
             this.locations[position] = {
                 name: POSITIONS[position],
@@ -38,11 +46,16 @@ export default class Executor extends Extension {
                 indexChanged: null,
                 commandsJsonChanged: null,
                 locationClicked: null,
+                hoverId: null,
             };
 
             this.locations[position].stopped = false;
 
-            this.locations[position].box = new St.BoxLayout({style_class: 'panel-button', reactive: true});
+            this.locations[position].box = new St.BoxLayout({
+                style_class: 'panel-button',
+                reactive: true,
+                track_hover: true,
+            });
 this.locations[position].locationClicked = this.locations[position].box.connect(
     'button-press-event',
     (actor, event) => {
@@ -70,6 +83,40 @@ this.locations[position].locationClicked = this.locations[position].box.connect(
         return Clutter.EVENT_PROPAGATE;
     }
 );
+
+            this.locations[position].hoverId = this.locations[position].box.connect(
+                'notify::hover',
+                (actor) => {
+                    if (this.tooltip) {
+                        if (actor.hover) {
+                            let tooltipText = this.settings.get_string(`${POSITIONS[position]}-tooltip`).trim();
+                            if (tooltipText) {
+                                this.tooltip.set_text(tooltipText);
+                                let [x, y] = actor.get_transformed_position();
+                                let [w, h] = actor.get_transformed_size();
+                                let [minWidth, naturalWidth] = this.tooltip.get_preferred_width(-1);
+                                let tooltipX = x + (w - naturalWidth) / 2;
+                                
+                                // Ensure tooltip stays within screen bounds
+                                let stageWidth = global.stage.width;
+                                if (tooltipX + naturalWidth > stageWidth - 8) {
+                                    tooltipX = stageWidth - naturalWidth - 8;
+                                }
+                                if (tooltipX < 8) {
+                                    tooltipX = 8;
+                                }
+                                
+                                this.tooltip.set_position(tooltipX, y + h + 8);
+                                this.tooltip.show();
+                                Main.uiGroup.set_child_above_sibling(this.tooltip, null);
+                            }
+                        } else {
+                            this.tooltip.hide();
+                        }
+                    }
+                }
+            );
+
 if (this.locations[position].box.get_parent()) {
                 this.locations[position].box.get_parent().remove_child(this.locations[position].box);
             }
@@ -112,6 +159,9 @@ if (this.locations[position].box.get_parent()) {
             }
 
             this.locations[position].box.disconnect(this.locations[position].locationClicked);
+            if (this.locations[position].hoverId) {
+                this.locations[position].box.disconnect(this.locations[position].hoverId);
+            }
 
             this.locations[position].box.remove_all_children();
             this.locations[position].box = null;
@@ -122,6 +172,12 @@ if (this.locations[position].box.get_parent()) {
             this.settings.disconnect(this.locations[position].activeChanged);
             this.settings.disconnect(this.locations[position].indexChanged);
             this.settings.disconnect(this.locations[position].commandsJsonChanged);
+        }
+
+        if (this.tooltip) {
+            Main.uiGroup.remove_child(this.tooltip);
+            this.tooltip.destroy();
+            this.tooltip = null;
         }
 
         this.settings = null;
