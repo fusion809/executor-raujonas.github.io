@@ -217,6 +217,23 @@ export default class ExecutorPreferences extends ExtensionPreferences {
                 Gio.SettingsBindFlags.DEFAULT
             );
 
+            let tooltipCmdLabel = new Gtk.Label({
+                label: _('Tooltip command:'),
+                visible: true,
+                halign: Gtk.Align.START,
+            });
+            let tooltipCmdEntry = new Gtk.Entry({
+                visible: true,
+                hexpand: true,
+                placeholder_text: _('e.g. grep -E \'\\[(UPDATES|MISSING|FAILED)\\]\' ~/updates.log'),
+            });
+            settings.bind(
+                POSITIONS[position] + '-tooltip-command',
+                tooltipCmdEntry,
+                'text',
+                Gio.SettingsBindFlags.DEFAULT
+            );
+
             clickGrid.attach(leftClickLabel, 0, 0, 1, 1);
             clickGrid.attach(leftClickEntry, 1, 0, 1, 1);
             clickGrid.attach(middleClickLabel, 0, 1, 1, 1);
@@ -225,6 +242,9 @@ export default class ExecutorPreferences extends ExtensionPreferences {
             clickGrid.attach(rightClickEntry, 1, 2, 1, 1);
             clickGrid.attach(tooltipLabel, 0, 3, 1, 1);
             clickGrid.attach(tooltipEntry, 1, 3, 1, 1);
+            clickGrid.attach(tooltipCmdLabel, 0, 4, 1, 1);
+            clickGrid.attach(tooltipCmdEntry, 1, 4, 1, 1);
+
 
             grid.attach(clickGrid, 0, 7, 2, 1);
 

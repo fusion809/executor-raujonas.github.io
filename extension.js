@@ -30,6 +30,8 @@ export default class Executor extends Extension {
                 style_class: 'executor-tooltip',
                 visible: false,
             });
+            this.tooltip.get_clutter_text().set_line_wrap(true);
+            this.tooltip.get_clutter_text().set_ellipsize(0); // PANGO_ELLIPSIZE_NONE
             Main.uiGroup.add_child(this.tooltip);
         }
 
@@ -89,14 +91,26 @@ this.locations[position].locationClicked = this.locations[position].box.connect(
                 (actor) => {
                     if (this.tooltip) {
                         if (actor.hover) {
-                            let tooltipText = this.settings.get_string(`${POSITIONS[position]}-tooltip`).trim();
-                            if (tooltipText) {
-                                this.tooltip.set_text(tooltipText);
+                            let posName = POSITIONS[position];
+                            let staticText = this.settings.get_string(`${posName}-tooltip`).trim();
+                            let tooltipCmd = this.settings.get_string(`${posName}-tooltip-command`).trim();
+
+                            // Escape a plain string for Pango markup
+                            const escapeMarkup = (str) => str
+                                .replace(/&/g, '&amp;')
+                                .replace(/</g, '&lt;')
+                                .replace(/>/g, '&gt;');
+
+                            const showTooltip = (text, actor) => {
+                                if (!text || !actor.hover) return;
+                                // Render newlines as actual line breaks via markup
+                                let markupText = escapeMarkup(text).replace(/\n/g, '\n');
+                                this.tooltip.get_clutter_text().set_markup(markupText);
                                 let [x, y] = actor.get_transformed_position();
                                 let [w, h] = actor.get_transformed_size();
-                                let [minWidth, naturalWidth] = this.tooltip.get_preferred_width(-1);
+                                let [, naturalWidth] = this.tooltip.get_preferred_width(-1);
                                 let tooltipX = x + (w - naturalWidth) / 2;
-                                
+
                                 // Ensure tooltip stays within screen bounds
                                 let stageWidth = global.stage.width;
                                 if (tooltipX + naturalWidth > stageWidth - 8) {
@@ -105,10 +119,42 @@ this.locations[position].locationClicked = this.locations[position].box.connect(
                                 if (tooltipX < 8) {
                                     tooltipX = 8;
                                 }
-                                
+
                                 this.tooltip.set_position(tooltipX, y + h + 8);
                                 this.tooltip.show();
                                 Main.uiGroup.set_child_above_sibling(this.tooltip, null);
+                            };
+
+                            // Show static text immediately (if any)
+                            if (staticText) {
+                                showTooltip(staticText, actor);
+                            }
+
+                            if (tooltipCmd) {
+                                try {
+                                    let proc = Gio.Subprocess.new(
+                                        ['bash', '-c', tooltipCmd],
+                                        Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE
+                                    );
+                                    proc.communicate_utf8_async(null, null, (proc, res) => {
+                                        try {
+                                            let [, stdout, stderr] = proc.communicate_utf8_finish(res);
+                                            let cmdText = stdout ? stdout.trimEnd() : '';
+                                            if (!cmdText && stderr) cmdText = stderr.trimEnd();
+                                            if (cmdText) {
+                                                // Append command output below static text (if any)
+                                                let combined = staticText
+                                                    ? staticText + '\n' + cmdText
+                                                    : cmdText;
+                                                showTooltip(combined, actor);
+                                            }
+                                        } catch (e) {
+                                            console.log('Executor: tooltip command finish error: ' + e);
+                                        }
+                                    });
+                                } catch (e) {
+                                    console.log('Executor: tooltip command spawn error: ' + e);
+                                }
                             }
                         } else {
                             this.tooltip.hide();
@@ -116,6 +162,7 @@ this.locations[position].locationClicked = this.locations[position].box.connect(
                     }
                 }
             );
+
 
 if (this.locations[position].box.get_parent()) {
                 this.locations[position].box.get_parent().remove_child(this.locations[position].box);

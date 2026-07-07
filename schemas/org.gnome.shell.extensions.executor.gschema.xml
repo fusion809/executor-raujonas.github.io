@@ -91,11 +91,21 @@
             <summary>Tooltip for the left widget</summary>
             <description>Tooltip text to show when hovering over the left widget.</description>
         </key>
+        <key name="left-tooltip-command" type="s">
+            <default>''</default>
+            <summary>Tooltip command for the left widget</summary>
+            <description>Shell command whose stdout is shown in the tooltip when hovering over the left widget.</description>
+        </key>
         <key name="center-tooltip" type="s">
             <default>'Left click: list wallpapers with displayed wallpaper centred and highlighted. 
 Right click: open wallpaper in eog.'</default>
             <summary>Tooltip for the center widget</summary>
             <description>Tooltip text to show when hovering over the center widget.</description>
+        </key>
+        <key name="center-tooltip-command" type="s">
+            <default>''</default>
+            <summary>Tooltip command for the center widget</summary>
+            <description>Shell command whose stdout is shown in the tooltip when hovering over the center widget.</description>
         </key>
         <key name="right-tooltip" type="s">
             <default>'Left click: run `update`. 
@@ -103,6 +113,11 @@ Middle click: update notifications.
 Right click: show log of last update check.'</default>
             <summary>Tooltip for the right widget</summary>
             <description>Tooltip text to show when hovering over the right widget.</description>
+        </key>
+        <key name="right-tooltip-command" type="s">
+            <default>''</default>
+            <summary>Tooltip command for the right widget</summary>
+            <description>Shell command whose stdout is shown in the tooltip when hovering over the right widget.</description>
         </key>
     </schema>
 </schemalist>
