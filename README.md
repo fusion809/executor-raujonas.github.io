@@ -33,3 +33,5 @@ If you open GNOME Extensions and navigate to Executor's settings, you'll find th
 **Figure 3: Executor's general settings.**
 
 The one setting under "General", namely "Click actions" decides whether clicking executor output will run the commands you have specified.
+
+If you want to export your settings, you can with the command `dconf dump /org/gnome/shell/extensions/executor/ > executor-settings.dconf` and import them with `dconf load /org/gnome/shell/extensions/executor/ < executor-settings.dconf` per the [upstream docs](https://raujonas.github.io/executor/).
