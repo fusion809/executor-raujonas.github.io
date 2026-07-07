@@ -7,7 +7,7 @@ import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/
 
 const POSITIONS = {
     0: 'left',
-    1: 'center',
+    1: 'centre',
     2: 'right',
 };
 
@@ -265,7 +265,8 @@ export default class Executor extends Extension {
                 this.checkCommands(location, this.settings.get_value(location.name + '-commands-json').deep_unpack());
             }
 
-            Main.panel['_' + location.name + 'Box'].insert_child_at_index(location.box, location.lastIndex);
+            const panelBoxName = location.name === 'centre' ? 'center' : location.name;
+            Main.panel['_' + panelBoxName + 'Box'].insert_child_at_index(location.box, location.lastIndex);
         } else {
             location.stopped = true;
             if (location.box.get_parent()) {

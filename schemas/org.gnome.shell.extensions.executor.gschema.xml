@@ -35,38 +35,38 @@
             <summary>Tooltip command for the left widget</summary>
             <description>Shell command whose stdout is shown in the tooltip when hovering over the left widget.</description>
         </key>
-        <key name="center-active" type="b">
+        <key name="centre-active" type="b">
             <default>true</default>
         </key>
-        <key name="center-index" type="i">
+        <key name="centre-index" type="i">
             <default>2</default>
         </key>
-        <key name="center-commands-json" type="s">
+        <key name="centre-commands-json" type="s">
             <default>'{"commands":[{"isActive":true,"command":"~/lfs-scripts/count-wallpapers.sh","interval":5,"uuid":"7ade000c-d6fc-4f44-9d05-a6693726a76c"}]}'</default>
         </key>
-        <key name="center-left-click-command" type="s">
+        <key name="centre-left-click-command" type="s">
             <default>'gnome-terminal -- zsh -ic "~/lfs-scripts/list-wallpaper.sh"'</default>
             <summary>Command executed when centre indicator is left-clicked</summary>
             <description>Shell command to execute when the centre panel item is left-clicked.</description>
         </key>
-        <key name="center-middle-click-command" type="s">
+        <key name="centre-middle-click-command" type="s">
             <default>''</default>
             <summary>Command executed when centre indicator is middle-clicked</summary>
             <description>Shell command to execute when the centre panel item is middle-clicked.</description>
         </key>
-        <key name="center-right-click-command" type="s">
+        <key name="centre-right-click-command" type="s">
             <default>'~/lfs-scripts/open-wallpaper.sh'</default>
             <summary>Command executed when centre indicator is right-clicked</summary>
             <description>Shell command to execute when the centre panel item is right-clicked.</description>
         </key>
-        <key name="center-tooltip" type="s">
+        <key name="centre-tooltip" type="s">
             <default>'Left click: list wallpapers with displayed wallpaper centred and highlighted. 
 Middle click: open ~/wallpapers in Nautilus.
 Right click: open wallpaper in eog.'</default>
             <summary>Tooltip for the centre widget</summary>
             <description>Tooltip text to show when hovering over the centre widget.</description>
         </key>
-        <key name="center-tooltip-command" type="s">
+        <key name="centre-tooltip-command" type="s">
             <default>''</default>
             <summary>Tooltip command for the centre widget</summary>
             <description>Shell command whose stdout is shown in the tooltip when hovering over the centre widget.</description>

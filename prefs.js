@@ -5,7 +5,7 @@ import { ExtensionPreferences, gettext as _ } from 'resource:///org/gnome/Shell/
 
 const POSITIONS = {
     0: 'left',
-    1: 'center',
+    1: 'centre',
     2: 'right',
 };
 
@@ -13,7 +13,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
     getPreferencesWidget() {
         const postrans = {
             0: _('Left'),
-            1: _('Center'),
+            1: _('Centre'),
             2: _('Right'),
         };
 
@@ -281,7 +281,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
             settings.set_boolean('click-on-output-active', clickOnOutputActive.get_active());
         });
         topHbox.append(
-            new Gtk.Label({ label: _('Click on output in top bar active:'), use_markup: true, visible: true })
+            new Gtk.Label({ label: _('Click actions:'), use_markup: true, visible: true })
         );
         topHbox.append(clickOnOutputActive);
         grid.attach(new Gtk.Separator({ visible: true, orientation: Gtk.Orientation.VERTICAL }), 0, 1, 2, 1);
