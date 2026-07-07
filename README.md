@@ -1,4 +1,4 @@
-# Executor extension fork with click actions
+# Executor extension fork with click actions and tooltips
 ![Executor extension with click actions](https://fusion809.github.io/images/executor-raujonas.github.io/LFS_screenshot_07-07-2026_r13.0-143.png)
 **Figure 1: Executor in use on my Linux From Scratch developmental (systemd init) virtual machine on 7 July 2026. Only active on the centre and right of the panel.**
 
