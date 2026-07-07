@@ -144,6 +144,54 @@ export default class ExecutorPreferences extends ExtensionPreferences {
             buttonsHbox.append(saveButton);
             grid.attach(buttonsHbox, 0, 5, 2, 1);
 
+            grid.attach(new Gtk.Separator({visible: true, orientation: Gtk.Orientation.HORIZONTAL}), 0, 6, 2, 1);
+
+            let clickGrid = new Gtk.Grid({
+                column_spacing: 12,
+                row_spacing: 6,
+                visible: true,
+                hexpand: true,
+            });
+
+            let leftClickLabel = new Gtk.Label({
+                label: _('Left-click command:'),
+                visible: true,
+                halign: Gtk.Align.START,
+            });
+            let leftClickEntry = new Gtk.Entry({
+                visible: true,
+                hexpand: true,
+            });
+            settings.bind(
+                POSITIONS[position] + '-click-command',
+                leftClickEntry,
+                'text',
+                Gio.SettingsBindFlags.DEFAULT
+            );
+
+            let rightClickLabel = new Gtk.Label({
+                label: _('Right-click command:'),
+                visible: true,
+                halign: Gtk.Align.START,
+            });
+            let rightClickEntry = new Gtk.Entry({
+                visible: true,
+                hexpand: true,
+            });
+            settings.bind(
+                POSITIONS[position] + '-right-click-command',
+                rightClickEntry,
+                'text',
+                Gio.SettingsBindFlags.DEFAULT
+            );
+
+            clickGrid.attach(leftClickLabel, 0, 0, 1, 1);
+            clickGrid.attach(leftClickEntry, 1, 0, 1, 1);
+            clickGrid.attach(rightClickLabel, 0, 1, 1, 1);
+            clickGrid.attach(rightClickEntry, 1, 1, 1, 1);
+
+            grid.attach(clickGrid, 0, 7, 2, 1);
+
             let pos = postrans[position];
             this.notebook.append_page(grid, new Gtk.Label({label: _(pos), visible: true, hexpand: true}));
 

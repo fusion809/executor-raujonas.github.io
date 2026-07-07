@@ -45,40 +45,28 @@ export default class Executor extends Extension {
             this.locations[position].box = new St.BoxLayout({style_class: 'panel-button', reactive: true});
 this.locations[position].locationClicked = this.locations[position].box.connect(
     'button-press-event',
-	(actor, event) => {
-    const button = event.get_button();
-
-    if (position === 2) {        // right output
-        if (button === 1) {
-            GLib.spawn_command_line_async(
-                this.settings.get_string('click-command').trim()
-            );
-        } else if (button === 3) {
-            GLib.spawn_command_line_async(
-                'gnome-terminal -- zsh -ic "tail -f ~/updates.log"'
-            );
+    (actor, event) => {
+        if (!this.settings.get_boolean('click-on-output-active')) {
+            return Clutter.EVENT_PROPAGATE;
         }
 
-        return Clutter.EVENT_STOP;
+        const button = event.get_button();
+        const posName = POSITIONS[position];
+        let command = '';
+
+        if (button === 1) { // left output click
+            command = this.settings.get_string(`${posName}-click-command`).trim();
+        } else if (button === 3) { // right output click
+            command = this.settings.get_string(`${posName}-right-click-command`).trim();
+        }
+
+        if (command) {
+            GLib.spawn_command_line_async(command);
+            return Clutter.EVENT_STOP;
+        }
+
+        return Clutter.EVENT_PROPAGATE;
     }
-
-    if (position === 1) {        // centre output
-        if (button === 1) {
-            GLib.spawn_command_line_async(
-                'gnome-terminal -- zsh -ic "/home/fusion809/lfs-scripts/list-wallpaper.sh"'
-            );
-        }  else if (button === 3) {
-        GLib.spawn_command_line_async(
-		'/home/fusion809/lfs-scripts/open-wallpaper.sh'
-        );
-    }
-
-        return Clutter.EVENT_STOP;
-    }
-
-    return Clutter.EVENT_PROPAGATE;
-}
-
 );
 if (this.locations[position].box.get_parent()) {
                 this.locations[position].box.get_parent().remove_child(this.locations[position].box);
