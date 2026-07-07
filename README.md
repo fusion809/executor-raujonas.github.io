@@ -6,3 +6,5 @@ I wanted click actions and tooltips (with both text and command fields) for the 
 
 The open-wallpaper.sh and updates_no.sh scripts called by this extension are defined in [lfs-scripts](https://github.com/fusion809/lfs-scripts). This extension assumed it is located ~/. The `update` and `updates` functions are defined in scripts within my [host's scripts shell/user/21-lfs.sh, shell/user/lfs-autobuild.sh, and shell/user/lfs-updates.sh](https://github.com/fusion809/NixOS-configs/tree/26.05/shell/user).
 
+## Installation
+Simply git clone this repo to ~/.local/share/gnome-shell/extensions and this should suffice to install it. I guess you might need to run `glib-compile-schemas schemas` in its root. 
