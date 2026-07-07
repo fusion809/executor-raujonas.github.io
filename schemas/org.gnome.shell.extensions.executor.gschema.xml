@@ -98,6 +98,7 @@
         </key>
         <key name="center-tooltip" type="s">
             <default>'Left click: list wallpapers with displayed wallpaper centred and highlighted. 
+Middle click: open ~/wallpapers in Nautilus.
 Right click: open wallpaper in eog.'</default>
             <summary>Tooltip for the center widget</summary>
             <description>Tooltip text to show when hovering over the center widget.</description>
@@ -115,7 +116,7 @@ Right click: show log of last update check.'</default>
             <description>Tooltip text to show when hovering over the right widget.</description>
         </key>
         <key name="right-tooltip-command" type="s">
-            <default>''</default>
+            <default>'grep -E \'\[(UPDATES|MISSING|FAILED)\]\' ~/updates.log'</default>
             <summary>Tooltip command for the right widget</summary>
             <description>Shell command whose stdout is shown in the tooltip when hovering over the right widget.</description>
         </key>
