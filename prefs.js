@@ -169,6 +169,22 @@ export default class ExecutorPreferences extends ExtensionPreferences {
                 Gio.SettingsBindFlags.DEFAULT
             );
 
+            let middleClickLabel = new Gtk.Label({
+                label: _('Middle-click command:'),
+                visible: true,
+                halign: Gtk.Align.START,
+            });
+            let middleClickEntry = new Gtk.Entry({
+                visible: true,
+                hexpand: true,
+            });
+            settings.bind(
+                POSITIONS[position] + '-middle-click-command',
+                middleClickEntry,
+                'text',
+                Gio.SettingsBindFlags.DEFAULT
+            );
+
             let rightClickLabel = new Gtk.Label({
                 label: _('Right-click command:'),
                 visible: true,
@@ -187,8 +203,10 @@ export default class ExecutorPreferences extends ExtensionPreferences {
 
             clickGrid.attach(leftClickLabel, 0, 0, 1, 1);
             clickGrid.attach(leftClickEntry, 1, 0, 1, 1);
-            clickGrid.attach(rightClickLabel, 0, 1, 1, 1);
-            clickGrid.attach(rightClickEntry, 1, 1, 1, 1);
+            clickGrid.attach(middleClickLabel, 0, 1, 1, 1);
+            clickGrid.attach(middleClickEntry, 1, 1, 1, 1);
+            clickGrid.attach(rightClickLabel, 0, 2, 1, 1);
+            clickGrid.attach(rightClickEntry, 1, 2, 1, 1);
 
             grid.attach(clickGrid, 0, 7, 2, 1);
 

@@ -56,6 +56,8 @@ this.locations[position].locationClicked = this.locations[position].box.connect(
 
         if (button === 1) { // left output click
             command = this.settings.get_string(`${posName}-click-command`).trim();
+        } else if (button === 2) { // middle output click
+            command = this.settings.get_string(`${posName}-middle-click-command`).trim();
         } else if (button === 3) { // right output click
             command = this.settings.get_string(`${posName}-right-click-command`).trim();
         }

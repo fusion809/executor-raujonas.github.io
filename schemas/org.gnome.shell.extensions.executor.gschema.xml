@@ -46,6 +46,11 @@
             <summary>Command executed when left indicator is left-clicked</summary>
             <description>Shell command to execute when the left panel item is left-clicked.</description>
         </key>
+        <key name="left-middle-click-command" type="s">
+            <default>''</default>
+            <summary>Command executed when left indicator is middle-clicked</summary>
+            <description>Shell command to execute when the left panel item is middle-clicked.</description>
+        </key>
         <key name="left-right-click-command" type="s">
             <default>''</default>
             <summary>Command executed when left indicator is right-clicked</summary>
@@ -56,6 +61,11 @@
             <summary>Command executed when center indicator is left-clicked</summary>
             <description>Shell command to execute when the center panel item is left-clicked.</description>
         </key>
+        <key name="center-middle-click-command" type="s">
+            <default>''</default>
+            <summary>Command executed when center indicator is middle-clicked</summary>
+            <description>Shell command to execute when the center panel item is middle-clicked.</description>
+        </key>
         <key name="center-right-click-command" type="s">
             <default>'/home/fusion809/lfs-scripts/open-wallpaper.sh'</default>
             <summary>Command executed when center indicator is right-clicked</summary>
@@ -65,6 +75,11 @@
             <default>''</default>
             <summary>Command executed when right indicator is left-clicked</summary>
             <description>Shell command to execute when the right panel item is left-clicked.</description>
+        </key>
+        <key name="right-middle-click-command" type="s">
+            <default>''</default>
+            <summary>Command executed when right indicator is middle-clicked</summary>
+            <description>Shell command to execute when the right panel item is middle-clicked.</description>
         </key>
         <key name="right-right-click-command" type="s">
             <default>'gnome-terminal -- zsh -ic "tail -f ~/updates.log"'</default>
