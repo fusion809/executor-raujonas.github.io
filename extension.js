@@ -67,7 +67,11 @@ this.locations[position].locationClicked = this.locations[position].box.connect(
             GLib.spawn_command_line_async(
                 'gnome-terminal -- zsh -ic "/home/fusion809/lfs-scripts/list-wallpaper.sh"'
             );
-        }
+        }  else if (button === 3) {
+        GLib.spawn_command_line_async(
+		'/home/fusion809/lfs-scripts/open-wallpaper.sh'
+        );
+    }
 
         return Clutter.EVENT_STOP;
     }
