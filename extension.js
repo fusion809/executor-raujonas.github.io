@@ -3,7 +3,7 @@ import Clutter from 'gi://Clutter';
 import GLib from 'gi://GLib';
 import Gio from 'gi://Gio';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import {Extension, gettext as _} from 'resource:///org/gnome/shell/extensions/extension.js';
+import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 
 const POSITIONS = {
     0: 'left',
@@ -41,7 +41,7 @@ export default class Executor extends Extension {
                 output: [],
                 box: null,
                 stopped: null,
-                commandsSettings: {commands: []},
+                commandsSettings: { commands: [] },
                 commandsOutput: [],
                 lastIndex: null,
                 activeChanged: null,
@@ -58,33 +58,33 @@ export default class Executor extends Extension {
                 reactive: true,
                 track_hover: true,
             });
-this.locations[position].locationClicked = this.locations[position].box.connect(
-    'button-press-event',
-    (actor, event) => {
-        if (!this.settings.get_boolean('click-on-output-active')) {
-            return Clutter.EVENT_PROPAGATE;
-        }
+            this.locations[position].locationClicked = this.locations[position].box.connect(
+                'button-press-event',
+                (actor, event) => {
+                    if (!this.settings.get_boolean('click-on-output-active')) {
+                        return Clutter.EVENT_PROPAGATE;
+                    }
 
-        const button = event.get_button();
-        const posName = POSITIONS[position];
-        let command = '';
+                    const button = event.get_button();
+                    const posName = POSITIONS[position];
+                    let command = '';
 
-        if (button === 1) { // left output click
-            command = this.settings.get_string(`${posName}-click-command`).trim();
-        } else if (button === 2) { // middle output click
-            command = this.settings.get_string(`${posName}-middle-click-command`).trim();
-        } else if (button === 3) { // right output click
-            command = this.settings.get_string(`${posName}-right-click-command`).trim();
-        }
+                    if (button === 1) { // left output click
+                        command = this.settings.get_string(`${posName}-left-click-command`).trim();
+                    } else if (button === 2) { // middle output click
+                        command = this.settings.get_string(`${posName}-middle-click-command`).trim();
+                    } else if (button === 3) { // right output click
+                        command = this.settings.get_string(`${posName}-right-click-command`).trim();
+                    }
 
-        if (command) {
-            GLib.spawn_command_line_async(command);
-            return Clutter.EVENT_STOP;
-        }
+                    if (command) {
+                        GLib.spawn_command_line_async(command);
+                        return Clutter.EVENT_STOP;
+                    }
 
-        return Clutter.EVENT_PROPAGATE;
-    }
-);
+                    return Clutter.EVENT_PROPAGATE;
+                }
+            );
 
             this.locations[position].hoverId = this.locations[position].box.connect(
                 'notify::hover',
@@ -164,7 +164,7 @@ this.locations[position].locationClicked = this.locations[position].box.connect(
             );
 
 
-if (this.locations[position].box.get_parent()) {
+            if (this.locations[position].box.get_parent()) {
                 this.locations[position].box.get_parent().remove_child(this.locations[position].box);
             }
 
@@ -244,7 +244,7 @@ if (this.locations[position].box.get_parent()) {
     initOutputLabels(location) {
         location.box.remove_all_children();
         location.commandsSettings.commands.forEach(function (command, index) {
-            location.output[index] = new St.Label({y_expand: true, y_align: 2});
+            location.output[index] = new St.Label({ y_expand: true, y_align: 2 });
             location.box.add_child(location.output[index]);
         }, this);
     }
@@ -370,9 +370,9 @@ if (this.locations[position].box.get_parent()) {
 
                             console.log(
                                 'Executor: error in command "' +
-                                    command.command +
-                                    '": ' +
-                                    (stderr ? stderr.trim() : GLib.strerror(status))
+                                command.command +
+                                '": ' +
+                                (stderr ? stderr.trim() : GLib.strerror(status))
                             );
 
                             /*throw new Gio.IOErrorEnum({

@@ -1,7 +1,7 @@
 import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
 
-import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
+import { ExtensionPreferences, gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 const POSITIONS = {
     0: 'left',
@@ -19,8 +19,8 @@ export default class ExecutorPreferences extends ExtensionPreferences {
 
         const settings = this.getSettings();
 
-        let prefsWidget = new Gtk.Grid({visible: true, column_homogeneous: true});
-        this.notebook = new Gtk.Notebook({visible: true});
+        let prefsWidget = new Gtk.Grid({ visible: true, column_homogeneous: true });
+        this.notebook = new Gtk.Notebook({ visible: true });
         prefsWidget.attach(this.notebook, 0, 0, 1, 1);
         this.commandsArray = {};
         this.commandsArrayCopy = {};
@@ -55,7 +55,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
                 visible: true,
             });
 
-            let topHbox = new Gtk.Box({orientation: Gtk.Orientation.HORIZONTAL, spacing: 20, visible: true});
+            let topHbox = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL, spacing: 20, visible: true });
             grid.attach(topHbox, 0, 0, 2, 1);
 
             let active = new Gtk.Switch({
@@ -70,21 +70,21 @@ export default class ExecutorPreferences extends ExtensionPreferences {
                 if (active.get_active()) {
                     this.saveCommands(settings);
                 }
-        
+
                 settings.set_boolean(POSITIONS[position] + '-active', active.get_active());
             });
             let index = new Gtk.SpinButton({
-                adjustment: new Gtk.Adjustment({lower: 0, upper: 10, step_increment: 1}),
+                adjustment: new Gtk.Adjustment({ lower: 0, upper: 10, step_increment: 1 }),
                 visible: true,
                 xalign: 0.5,
             });
             index.set_size_request(100, 0);
-            topHbox.append(new Gtk.Label({label: _('Active:'), use_markup: true, visible: true}));
+            topHbox.append(new Gtk.Label({ label: _('Active:'), use_markup: true, visible: true }));
             topHbox.append(active);
-            topHbox.append(new Gtk.Label({label: _('Index in status bar:'), visible: true, halign: Gtk.Align.END}));
+            topHbox.append(new Gtk.Label({ label: _('Index in status bar:'), visible: true, halign: Gtk.Align.END }));
             topHbox.append(index);
 
-            grid.attach(new Gtk.Separator({visible: true, orientation: Gtk.Orientation.VERTICAL}), 0, 1, 2, 1);
+            grid.attach(new Gtk.Separator({ visible: true, orientation: Gtk.Orientation.VERTICAL }), 0, 1, 2, 1);
             grid.attach(
                 new Gtk.Label({
                     label: _('Command') + ' / ' + _('Interval in seconds') + ':',
@@ -97,11 +97,11 @@ export default class ExecutorPreferences extends ExtensionPreferences {
                 1
             );
 
-            this.listBox[position] = new Gtk.ListBox({visible: true});
+            this.listBox[position] = new Gtk.ListBox({ visible: true });
             this.listBox[position].set_selection_mode(0);
             grid.attach(this.listBox[position], 0, 3, 2, 1);
             this.populateCommandList(position);
-            grid.attach(new Gtk.Separator({visible: true, orientation: Gtk.Orientation.VERTICAL}), 0, 4, 2, 1);
+            grid.attach(new Gtk.Separator({ visible: true, orientation: Gtk.Orientation.VERTICAL }), 0, 4, 2, 1);
 
             let buttonsHbox = new Gtk.Box({
                 orientation: Gtk.Orientation.HORIZONTAL,
@@ -144,7 +144,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
             buttonsHbox.append(saveButton);
             grid.attach(buttonsHbox, 0, 5, 2, 1);
 
-            grid.attach(new Gtk.Separator({visible: true, orientation: Gtk.Orientation.HORIZONTAL}), 0, 6, 2, 1);
+            grid.attach(new Gtk.Separator({ visible: true, orientation: Gtk.Orientation.HORIZONTAL }), 0, 6, 2, 1);
 
             let clickGrid = new Gtk.Grid({
                 column_spacing: 12,
@@ -163,7 +163,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
                 hexpand: true,
             });
             settings.bind(
-                POSITIONS[position] + '-click-command',
+                POSITIONS[position] + '-left-click-command',
                 leftClickEntry,
                 'text',
                 Gio.SettingsBindFlags.DEFAULT
@@ -249,7 +249,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
             grid.attach(clickGrid, 0, 7, 2, 1);
 
             let pos = postrans[position];
-            this.notebook.append_page(grid, new Gtk.Label({label: _(pos), visible: true, hexpand: true}));
+            this.notebook.append_page(grid, new Gtk.Label({ label: _(pos), visible: true, hexpand: true }));
 
             settings.bind(POSITIONS[position] + '-index', index, 'value', Gio.SettingsBindFlags.DEFAULT);
         }
@@ -267,7 +267,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
             margin_bottom: 14,
             visible: true,
         });
-        let topHbox = new Gtk.Box({orientation: Gtk.Orientation.HORIZONTAL, spacing: 20, visible: true});
+        let topHbox = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL, spacing: 20, visible: true });
         grid.attach(topHbox, 0, 0, 2, 1);
 
         let clickOnOutputActive = new Gtk.Switch({
@@ -281,11 +281,11 @@ export default class ExecutorPreferences extends ExtensionPreferences {
             settings.set_boolean('click-on-output-active', clickOnOutputActive.get_active());
         });
         topHbox.append(
-            new Gtk.Label({label: _('Click on output in top bar active:'), use_markup: true, visible: true})
+            new Gtk.Label({ label: _('Click on output in top bar active:'), use_markup: true, visible: true })
         );
         topHbox.append(clickOnOutputActive);
-        grid.attach(new Gtk.Separator({visible: true, orientation: Gtk.Orientation.VERTICAL}), 0, 1, 2, 1);
-        this.notebook.append_page(grid, new Gtk.Label({label: _('General'), visible: true, hexpand: true}));
+        grid.attach(new Gtk.Separator({ visible: true, orientation: Gtk.Orientation.VERTICAL }), 0, 1, 2, 1);
+        this.notebook.append_page(grid, new Gtk.Label({ label: _('General'), visible: true, hexpand: true }));
         /* End of general tab */
 
         this.notebook.set_current_page(settings.get_value('location').deep_unpack());
@@ -308,8 +308,8 @@ export default class ExecutorPreferences extends ExtensionPreferences {
     }
 
     prepareRow(c, index) {
-        let row = new Gtk.ListBoxRow({visible: true});
-        let hbox = new Gtk.Box({orientation: Gtk.Orientation.HORIZONTAL, visible: true});
+        let row = new Gtk.ListBoxRow({ visible: true });
+        let hbox = new Gtk.Box({ orientation: Gtk.Orientation.HORIZONTAL, visible: true });
         row.set_child(hbox);
         let isActiveButton = new Gtk.CheckButton({
             visible: true,
@@ -323,11 +323,11 @@ export default class ExecutorPreferences extends ExtensionPreferences {
             isActiveButton.set_active(isActiveButton.get_active());
         });
         hbox.append(isActiveButton);
-        let command = new Gtk.Entry({visible: true, hexpand: true, margin_end: 10});
+        let command = new Gtk.Entry({ visible: true, hexpand: true, margin_end: 10 });
         command.set_text(c.command);
         hbox.append(command);
         let interval = new Gtk.SpinButton({
-            adjustment: new Gtk.Adjustment({lower: 1, upper: 86400, step_increment: 1}),
+            adjustment: new Gtk.Adjustment({ lower: 1, upper: 86400, step_increment: 1 }),
             xalign: 0.5,
             visible: true,
             margin_end: 10,
@@ -372,7 +372,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
 
     addCommandToList() {
         let position = this.notebook.get_current_page();
-        this.commandsArray[position].push({command: "echo 'new command'", interval: 1});
+        this.commandsArray[position].push({ command: "echo 'new command'", interval: 1 });
         this.populateCommandList(position);
     }
 
