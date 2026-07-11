@@ -4,7 +4,7 @@
 
 I wanted click actions and tooltips (with both text and command fields) for the [Executor extension](https://github.com/raujonas/executor); this is my fork to achieve this. It was forked from version 30 of the upstream extension. The default click actions are those I use. The tooltip command output is shown below the corresponding tooltip text in the tooltip. 
 
-The open-wallpaper.sh and updates_no.sh scripts called by this extension are defined in [lfs-scripts](https://github.com/fusion809/lfs-scripts). This extension assumed it is located ~/. The `update` and `updates` functions are defined in scripts within my [host's scripts shell/user/21-lfs.sh, shell/user/lfs-autobuild.sh, and shell/user/lfs-updates.sh](https://github.com/fusion809/NixOS-configs/tree/26.05/shell/user).
+The `open-wallpaper.sh` and `updates_no.sh` scripts called by this extension are defined in [lfs-scripts](https://github.com/fusion809/lfs-scripts). This extension assumed it is located ~/. The `update` and `updates` functions are defined in scripts within my [host's scripts shell/user/21-lfs.sh, shell/user/lfs-autobuild.sh, and shell/user/lfs-updates.sh](https://github.com/fusion809/NixOS-configs/tree/26.05/shell/user).
 
 ![Executor extension with KDE Frameworks 6.27->6.28 updates listed in tooltip](https://fusion809.github.io/images/executor-raujonas.github.io/LFS_screenshot_11-07-2026_r13.0-143.png)
 **Figure 2: Executor extension with updates KDE Frameworks 6.27->6.28 update shown in tooltip.**
@@ -23,9 +23,11 @@ glib-compile-schemas ~/.local/share/gnome-shell/extensions/executor-raujonas.git
 If you open GNOME Extensions and navigate to Executor's settings, you'll find that for "Centre", "Left" and "Right" tabs the settings within are virtually identical and look like Figures 3 and 4.
 
 ![Executor's centre settings](https://fusion809.github.io/images/executor-raujonas.github.io/Centre_Extension_settings.png)
+
 **Figure 3: Executor's centre tab settings.**
 
 ![Executor's right settings](https://fusion809.github.io/images/executor-raujonas.github.io/Right_Extension_settings.png)
+
 **Figure 4: Executor's right tab settings.**
 
 **Table 1: Settings within left, centre and right tabs.**
@@ -43,6 +45,7 @@ If you open GNOME Extensions and navigate to Executor's settings, you'll find th
 | Tooltip command      | Depends on tab. | Bash command          | Command to run whose stdout is shown below the tooltip text when hovering over the relevant part of the GNOME panel. |
 
 ![General extension settings](https://fusion809.github.io/images/executor-raujonas.github.io/General_Extension_settings.png)
+
 **Figure 5: Executor's general settings.**
 
 The one setting under "General", namely "Click actions" decides whether clicking executor output will run the commands you have specified.
