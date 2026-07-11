@@ -20,10 +20,13 @@ glib-compile-schemas ~/.local/share/gnome-shell/extensions/executor-raujonas.git
 ```
 
 ## Documentation
-If you open GNOME Extensions and navigate to Executor's settings, you'll find that for "Centre", "Left" and "Right" tabs the settings within are virtually identical and look Figure 2.
+If you open GNOME Extensions and navigate to Executor's settings, you'll find that for "Centre", "Left" and "Right" tabs the settings within are virtually identical and look like Figures 3 and 4.
 
-![Executor's left/centre/right settings](https://fusion809.github.io/images/executor-raujonas.github.io/Centre_Extension_settings.png)
-**Figure 3: Executor's left, centre and right tab settings.**
+![Executor's centre settings](https://fusion809.github.io/images/executor-raujonas.github.io/Centre_Extension_settings.png)
+**Figure 3: Executor's centre tab settings.**
+
+![Executor's right settings](https://fusion809.github.io/images/executor-raujonas.github.io/Right_Extension_settings.png)
+**Figure 4: Executor's right tab settings.**
 
 **Table 1: Settings within left, centre and right tabs.**
 
@@ -40,7 +43,7 @@ If you open GNOME Extensions and navigate to Executor's settings, you'll find th
 | Tooltip command      | Depends on tab. | Bash command          | Command to run whose stdout is shown below the tooltip text when hovering over the relevant part of the GNOME panel. |
 
 ![General extension settings](https://fusion809.github.io/images/executor-raujonas.github.io/General_Extension_settings.png)
-**Figure 4: Executor's general settings.**
+**Figure 5: Executor's general settings.**
 
 The one setting under "General", namely "Click actions" decides whether clicking executor output will run the commands you have specified.
 
