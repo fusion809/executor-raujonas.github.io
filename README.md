@@ -6,14 +6,24 @@ I wanted click actions and tooltips (with both text and command fields) for the 
 
 The open-wallpaper.sh and updates_no.sh scripts called by this extension are defined in [lfs-scripts](https://github.com/fusion809/lfs-scripts). This extension assumed it is located ~/. The `update` and `updates` functions are defined in scripts within my [host's scripts shell/user/21-lfs.sh, shell/user/lfs-autobuild.sh, and shell/user/lfs-updates.sh](https://github.com/fusion809/NixOS-configs/tree/26.05/shell/user).
 
+![Executor extension with KDE Frameworks 6.27->6.28 updates listed in tooltip](https://fusion809.github.io/images/executor-raujonas.github.io/LFS_screenshot_11-07-2026_r13.0-143.png)
+**Figure 2: Executor extension with updates KDE Frameworks 6.27->6.28 update shown in tooltip.**
+
 ## Installation
 Simply git clone this repo to ~/.local/share/gnome-shell/extensions and this should suffice to install it. I guess you might need to run `glib-compile-schemas schemas` in its root. 
+
+At most the installation may entail running:
+
+```zsh
+git -C ~/.local/share/gnome-shell/extensions clone https://github.com/fusion809/executor-raujonas.github.io
+glib-compile-schemas ~/.local/share/gnome-shell/extensions/executor-raujonas.github.io/schemas
+```
 
 ## Documentation
 If you open GNOME Extensions and navigate to Executor's settings, you'll find that for "Centre", "Left" and "Right" tabs the settings within are virtually identical and look Figure 2.
 
 ![Executor's left/centre/right settings](https://fusion809.github.io/images/executor-raujonas.github.io/Centre_Extension_settings.png)
-**Figure 2: Executor's left, centre and right tab settings.**
+**Figure 3: Executor's left, centre and right tab settings.**
 
 **Table 1: Settings within left, centre and right tabs.**
 
@@ -30,7 +40,7 @@ If you open GNOME Extensions and navigate to Executor's settings, you'll find th
 | Tooltip command      | Depends on tab. | Bash command          | Command to run whose stdout is shown below the tooltip text when hovering over the relevant part of the GNOME panel. |
 
 ![General extension settings](https://fusion809.github.io/images/executor-raujonas.github.io/General_Extension_settings.png)
-**Figure 3: Executor's general settings.**
+**Figure 4: Executor's general settings.**
 
 The one setting under "General", namely "Click actions" decides whether clicking executor output will run the commands you have specified.
 
