@@ -13,6 +13,6 @@ right-click-command='gnome-terminal -- zsh -ic "update; exec zsh"'
 right-commands-json='{"commands":[{"isActive":true,"command":"/home/fusion809/lfs-scripts/updates_no.sh","interval":1,"uuid":"99646721-81cb-48f8-aa79-1f67fb06ce26"}]}'
 right-index=1
 right-left-click-command='gnome-terminal -- zsh -ic "update; exec zsh"'
-right-middle-click-command='gnome-terminal -- zsh -ic "updates 2>&1 | tee ~/updates.log > /dev/null"'
+right-middle-click-command='gnome-terminal -- zsh -ic "updates 2>&1 | tee ~/updates.log.tmp > /dev/null; mv ~/updates.log.tmp ~/updates.log"'
 right-tooltip='Left click: run `update`. \nMiddle click: update notifications. \nRight click: show log of last update check.'
 right-tooltip-command='~/lfs-scripts/update-table.sh'
