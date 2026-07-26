@@ -1,5 +1,5 @@
 # Executor extension fork with click actions and tooltips
-![Executor extension with click actions](https://fusion809.github.io/images/executor-raujonas.github.io/LFS_screenshot_09-07-2026_r13.0-143.png)
+![Executor extension with click actions](https://fusion809.github.io/images/executor-raujonas.github.io/LFS/LFS_screenshot_26-07-2026_(2).png)
 **Figure 1: Executor in use on my Linux From Scratch developmental (systemd init) virtual machine on 7 July 2026. Only active on the centre and right of the panel.**
 
 I wanted click actions and tooltips (with both text and command fields) for the [Executor extension](https://github.com/raujonas/executor); this is my fork to achieve this. It was forked from version 30 of the upstream extension. The default click actions are those I use. The tooltip command output is shown below the corresponding tooltip text in the tooltip. 
@@ -20,15 +20,19 @@ glib-compile-schemas ~/.local/share/gnome-shell/extensions/executor-raujonas.git
 ```
 
 ## Documentation
-If you open GNOME Extensions and navigate to Executor's settings, you'll find that for "Centre", "Left" and "Right" tabs the settings within are virtually identical and look like Figures 3 and 4.
+If you open GNOME Extensions and navigate to Executor's settings, you'll find that for "Left", "Centre" and "Right" tabs the settings within are virtually identical and look like Figures 3, 4, and 5.
+
+![Executor's left settings](https://fusion809.github.io/images/executor-raujonas.github.io/Left_Extension_settings.png)
+
+**Figure 3: Executor's left tab settings.**
 
 ![Executor's centre settings](https://fusion809.github.io/images/executor-raujonas.github.io/Centre_Extension_settings.png)
 
-**Figure 3: Executor's centre tab settings.**
+**Figure 4: Executor's centre tab settings.**
 
 ![Executor's right settings](https://fusion809.github.io/images/executor-raujonas.github.io/Right_Extension_settings.png)
 
-**Figure 4: Executor's right tab settings.**
+**Figure 5: Executor's right tab settings.**
 
 **Table 1: Settings within left, centre and right tabs.**
 
