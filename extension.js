@@ -423,7 +423,7 @@ export default class Executor extends Extension {
                 }
 
                 this.timeoutSourceIds.push(
-                    GLib.timeout_add_seconds(0, command.interval, () => {
+                    GLib.timeout_add(0, command.interval, () => {
                         if (this.cancellable && !this.cancellable.is_cancelled()) {
                             if (!this.stopped && !this.locations[locationIndex].stopped) {
                                 if (!this.executeQueue.some((c) => c.uuid === command.uuid)) {

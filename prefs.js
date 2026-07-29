@@ -38,7 +38,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
                 console.log('Error in json file for position:', POSITIONS[position]);
                 settings.set_string(
                     POSITIONS[position] + '-commands-json',
-                    '{"commands":[{"command":"echo Executor works!","interval":1}]}'
+                    '{"commands":[{"command":"echo Executor works!","interval":1000}]}'
                 );
             }
 
@@ -87,7 +87,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
             grid.attach(new Gtk.Separator({ visible: true, orientation: Gtk.Orientation.VERTICAL }), 0, 1, 2, 1);
             grid.attach(
                 new Gtk.Label({
-                    label: _('Command') + ' / ' + _('Interval in seconds') + ':',
+                    label: _('Command') + ' / ' + _('Interval in milliseconds') + ':',
                     visible: true,
                     halign: Gtk.Align.START,
                 }),
@@ -327,7 +327,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
         command.set_text(c.command);
         hbox.append(command);
         let interval = new Gtk.SpinButton({
-            adjustment: new Gtk.Adjustment({ lower: 1, upper: 86400, step_increment: 1 }),
+            adjustment: new Gtk.Adjustment({ lower: 1, upper: 86400000, step_increment: 100 }),
             xalign: 0.5,
             visible: true,
             margin_end: 10,
@@ -372,7 +372,7 @@ export default class ExecutorPreferences extends ExtensionPreferences {
 
     addCommandToList() {
         let position = this.notebook.get_current_page();
-        this.commandsArray[position].push({ command: "echo 'new command'", interval: 1 });
+        this.commandsArray[position].push({ command: "echo 'new command'", interval: 1000 });
         this.populateCommandList(position);
     }
 
