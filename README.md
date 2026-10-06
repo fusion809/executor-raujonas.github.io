@@ -1,6 +1,6 @@
 # Executor extension fork with click actions and tooltips
-![Executor extension with click actions](https://fusion809.github.io/images/executor-raujonas.github.io/LFS_screenshot_29-09-2026.png)
-**Figure 1: Executor in use on my Linux From Scratch developmental (systemd init) virtual machine on 29 September 2026.**
+![Executor extension with click actions](https://fusion809.github.io/images/executor-raujonas.github.io/LFS_screenshot_06-10-2026.png)
+**Figure 1: Executor in use on my Linux From Scratch developmental (systemd init) virtual machine on 6 October 2026.**
 
 I wanted click actions and tooltips (with both text and command fields) for the [Executor extension](https://github.com/raujonas/executor); this is my fork to achieve this. It was forked from version 30 of the upstream extension. The default click actions are those I use. The tooltip command output is shown below the corresponding tooltip text in the tooltip. 
 
