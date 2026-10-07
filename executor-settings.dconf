@@ -27,5 +27,6 @@ right-commands-json='{"commands":[{"isActive":true,"command":"/home/fusion809/lf
 right-index=2
 right-left-click-command='gnome-terminal -- zsh -ic "updatec; exec zsh"'
 right-middle-click-command='gnome-terminal -- zsh -ic "source ~/lfs-scripts/updates_no_funcs.sh; silent_updates"'
+right-right-click-command='gnome-terminal -- zsh -ic "tail -f ~/logs/updates.log"'
 right-tooltip='Left click: run `updatec`. \nMiddle click: update notifications. \nRight click: show log of last update check.'
 right-tooltip-command='~/lfs-scripts/update-table.sh'
